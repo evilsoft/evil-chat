@@ -1,0 +1,52 @@
+{
+  "name": "evil-chat",
+  "version": "0.1.0",
+  "description": "Simple Socket.IO chat application",
+  "author": "Ian Hofmann-Hicks (evil)",
+  "license": "ISC",
+  "scripts": {
+    "build:js": "mkdir -p dist/js && webpack -p --config webpack.config.build --colors --progress",
+    "watch:js": "mkdir -p site/js && webpack --watch --colors --progress",
+    "build:css": "mkdir -p dist/css && lessc --clean-css='--s0' --autoprefix='last 2 versions' src/less/main.less dist/css/app.css",
+    "watch:css": "mkdir -p site/css && watch 'lessc src/less/main.less site/css/app.css --autoprefix=\"last 2 versions\"' src/less/ -du",
+    "build:html": "mkdir -p dist/ && jade src/pages -o dist/",
+    "watch:html": "mkdir -p site/ && jade -w src/pages -o site/",
+    "clean:build": "rm -Rf dist/",
+    "clean:dev": "rm -Rf site/",
+    "clean": "npm run clean:build && npm run clean:dev",
+    "build": "npm run clean:build && npm run build:html && npm run build:js && npm run build:css",
+    "specs": "node_modules/karma/bin/karma start",
+    "serve": "browser-sync start --config bs.config.js",
+    "test": "npm run specs -- --single-run --reporters dots",
+    "start": "npm run clean:dev && parallelshell 'npm run watch:js' 'npm run watch:html' 'npm run watch:css' 'npm run serve'"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "browser-sync": "^2.7.3",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.9.2",
+    "jade": "^1.9.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-fixture": "^0.2.4",
+    "karma-html2js-preprocessor": "^0.1.0",
+    "karma-jasmine": "^0.3.5",
+    "karma-jasmine-html-reporter": "^0.1.8",
+    "karma-jasmine-matchers": "^2.0.0-beta1",
+    "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-webpack": "^1.5.1",
+    "less": "^2.5.0",
+    "less-plugin-autoprefix": "^1.4.2",
+    "less-plugin-clean-css": "^1.5.0",
+    "node-libs-browser": "^0.5.2",
+    "parallelshell": "^2.0.0",
+    "phantomjs-polyfill": "0.0.1",
+    "watch": "^0.16.0",
+    "webpack": "^1.9.8"
+  },
+  "dependencies": {
+    "lodash": "^3.9.1"
+  }
+}
