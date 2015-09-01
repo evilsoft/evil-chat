@@ -10,12 +10,11 @@ html
     script(src="js/app.js")
   body
     ul.log
-    form.entry(action="")
-      input.entry__input(autocomplete="off")
+    form.entry.row(action="")
+      input.entry__input.col.deca(autocomplete="off")
       button.entry__send Send
     script.
       EvilChat.start({
         container: document.body,
         debug: true
       });
-

@@ -3,7 +3,7 @@ module.exports = {
   output: {
     path:           './dist/js',
     filename:       'app.js',
-    library:        'EvilApp',
+    library:        'EvilChat',
     libraryTarget:  'umd'
   },
   module: {
