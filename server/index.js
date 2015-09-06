@@ -1,16 +1,9 @@
-var express = require('express');
-var app     = express();
-var server  = require('http').Server(app);
+var server    = require('./server');
+var startSync = require('./browser-sync');
 
-var bs = require('browser-sync').create();
+var port = process.env.PORT || 1337;
 
-app.use(express.static('site'));
-
-server.listen(1337, function() {
-  bs.init({
-    proxy: 'localhost:' + 1337,
-    open: false,
-    files: [ 'site/**/*' ]
-  });
-  console.log('server started on port: ', 1337);
+server.listen(port, function() {
+  startSync(port);
+  console.log('server started on port: ', port);
 });
