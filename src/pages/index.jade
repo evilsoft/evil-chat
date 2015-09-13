@@ -9,14 +9,9 @@ html
     title simplyEvil
     script(src="socket.io/socket.io.js")
     script(src="js/app.js")
+    script(src="js/index.js" defer)
   body
     ul.log
     form.entry.row(action="")
       input.entry__input.col.deca(autocomplete="off")
       button.entry__send Send
-    script.
-      var socket = io();
-      EvilChat.start({
-        container: document.body,
-        debug: true
-      });

@@ -7,6 +7,9 @@ module.exports = function(port) {
       ws:     true
     },
     open: false,
-    files: [ 'site/**/*' ]
+    files: [
+      'site/**/*',
+      'server/public/**/*'
+    ]
   });
 };
