@@ -1,3 +1,7 @@
+import {mount} from 'mithril';
+
+import AppLayout from './components/app-layout';
+
 var defaultOptions = {
   debug:      false,
   container:  document.body
@@ -9,6 +13,7 @@ var mergeOptions = function(...options) {
 
 var renderApp = function() {
   let {container} = this.options;
+  mount(container, AppLayout);
   return this;
 };
 
