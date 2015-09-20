@@ -4,8 +4,10 @@ function controller() {
   return {
     message: m.prop(''),
 
-    send() {
+    send(e) {
       const { message } = this;
+
+      e.preventDefault();
 
       if(message()) {
         // TODO: replace with emitter
@@ -18,17 +20,15 @@ function controller() {
 
 function view(ctrl) {
   return (
-    <div className="entry">
+    <form className="entry" onsubmit={ctrl.send.bind(ctrl)}>
       <input
         className="entry__input"
         autocomplete="off"
         onchange={m.withAttr('value', ctrl.message)}
         value={ctrl.message()}
       />
-      <button type="button" className="entry__send" onclick={() => ctrl.send()}>
-        Send
-      </button>
-    </div>
+      <button className="entry__send">Send</button>
+    </form>
   );
 }
 
