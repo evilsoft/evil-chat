@@ -1,4 +1,4 @@
-import {mount} from 'mithril';
+import m, {mount} from 'mithril';
 
 import AppLayout from './components/app-layout';
 
@@ -12,8 +12,13 @@ var mergeOptions = function(...options) {
 };
 
 var renderApp = function() {
-  let {container} = this.options;
-  mount(container, AppLayout);
+  let {
+    container,
+    adapter
+  } = this.options;
+
+  mount(container, <AppLayout {...adapter} />);
+
   return this;
 };
 

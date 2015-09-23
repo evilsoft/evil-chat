@@ -1,6 +1,8 @@
 import m from 'mithril';
 
-function controller() {
+function controller(attrs) {
+  let { sendMessage } = attrs;
+
   return {
     message: m.prop(''),
 
@@ -10,8 +12,7 @@ function controller() {
       e.preventDefault();
 
       if(message()) {
-        // TODO: replace with emitter
-        console.log(message());
+        sendMessage(message());
         message('');
       }
     },
