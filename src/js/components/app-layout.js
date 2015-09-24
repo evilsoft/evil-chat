@@ -4,13 +4,9 @@ import Log    from './log';
 import Entry  from './entry';
 
 function controller(attrs) {
-  let { send } = attrs;
+  let { sendMessage } = attrs;
 
-  return {
-    sendMessage(message) {
-      send('chat:message', message);
-    }
-  };
+  return { sendMessage };
 }
 
 function view(ctrl) {

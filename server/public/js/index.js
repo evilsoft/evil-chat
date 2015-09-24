@@ -1,10 +1,9 @@
 (function(root) {
-  var socket = root.io();
+  var socket  = root.io();
+  var emit    = socket.emit;
 
   var adapter = {
-    send: function(name, data) {
-      socket.emit(name, data);
-    },
+    sendMessage: emit.bind(socket, 'chat:message')
   };
 
   root.EvilChat.start({
