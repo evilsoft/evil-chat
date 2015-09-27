@@ -1,11 +1,27 @@
 import m from 'mithril';
 
-var Log = {
-  view() {
-    return (
-      <ul className="log" />
-    );
-  }
-};
+function buildMessage(msg) {
+  return (
+    <li className="log__message">
+      {msg}
+    </li>
+  );
+}
+
+function controller() {
+  return { messages: [] };
+}
+
+function view(ctrl) {
+  let { messages } = ctrl;
+
+  return (
+    <ul className="log">
+      { messages.map(buildMessage) }
+    </ul>
+  );
+}
+
+var Log = { controller, view };
 
 export default Log;
