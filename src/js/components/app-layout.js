@@ -4,15 +4,21 @@ import Log    from './log';
 import Entry  from './entry';
 
 function controller(attrs) {
-  let { sendMessage } = attrs;
+  let {
+    sendMessage,
+    messages,
+  } = attrs;
 
-  return { sendMessage };
+  return {
+    sendMessage,
+    messages,
+  };
 }
 
 function view(ctrl) {
   return (
     <div>
-      <Log />
+      <Log {...ctrl} />
       <Entry {...ctrl} />
     </div>
   );

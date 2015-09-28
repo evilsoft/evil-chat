@@ -8,8 +8,10 @@ function buildMessage(msg) {
   );
 }
 
-function controller() {
-  return { messages: [] };
+function controller(attrs) {
+  let { messages } = attrs;
+
+  return { messages };
 }
 
 function view(ctrl) {

@@ -17,7 +17,15 @@ var renderApp = function() {
     adapter
   } = this.options;
 
-  mount(container, <AppLayout {...adapter} />);
+  let messages = ['tickles'];
+
+  function appLayout() {
+    return (
+      <AppLayout messages={messages} {...adapter} />
+    );
+  }
+
+  mount(container, appLayout());
 
   return this;
 };
