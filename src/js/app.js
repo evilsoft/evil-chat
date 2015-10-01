@@ -2,22 +2,22 @@ import m, {mount} from 'mithril';
 
 import AppLayout from './components/app-layout';
 
-var defaultOptions = {
+let messages = ['tickles'];
+
+const defaultOptions = Object.freeze({
   debug:      false,
-  container:  document.body
-};
+  container:  document.body,
+});
 
-var mergeOptions = function(...options) {
+function mergeOptions(...options) {
   return Object.assign({}, defaultOptions, ...options);
-};
+}
 
-var renderApp = function() {
+function renderApp() {
   let {
     container,
-    adapter
+    adapter,
   } = this.options;
-
-  let messages = ['tickles'];
 
   function appLayout() {
     return (
@@ -28,26 +28,31 @@ var renderApp = function() {
   mount(container, appLayout());
 
   return this;
-};
+}
 
 class Application {
   constructor(options={}) {
     this.options = mergeOptions(options);
   }
 
-  start(options={}) {
-    this.options = mergeOptions(this.options, options);
+  start(startOptions={}) {
+    let { options } = this;
+
+    options = mergeOptions(options, startOptions);
+
     renderApp.apply(this);
 
-    if(this.options.debug)
-      console.log('Application started with\n', this.options)
+    if(options.debug)
+      console.log('Application started with\n', options)
 
     return this;
   }
 
   stop() {
-    if(this.el)
-      this.el.parentNode.removeChild(this.el);
+    let { el } = this;
+
+    if(el)
+      el.parentNode.removeChild(el);
 
     return this;
   }
