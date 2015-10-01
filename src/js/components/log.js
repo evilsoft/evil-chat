@@ -19,7 +19,7 @@ function view(ctrl) {
 
   return (
     <ul className="log">
-      { messages.map(buildMessage) }
+      { messages().map(buildMessage) }
     </ul>
   );
 }

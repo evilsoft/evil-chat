@@ -1,8 +1,7 @@
-import m, {mount} from 'mithril';
+import m, { mount } from 'mithril';
 
-import AppLayout from './components/app-layout';
-
-let messages = ['tickles'];
+import AppLayout  from './components/app-layout';
+import appState   from './models/app-state';
 
 const defaultOptions = Object.freeze({
   debug:      false,
@@ -13,6 +12,11 @@ function mergeOptions(...options) {
   return Object.assign({}, defaultOptions, ...options);
 }
 
+function onMessage(msg) {
+  appState.addMessage(msg);
+  m.redraw();
+}
+
 function renderApp() {
   let {
     container,
@@ -21,9 +25,11 @@ function renderApp() {
 
   function appLayout() {
     return (
-      <AppLayout messages={messages} {...adapter} />
+      <AppLayout messages={appState.messages} {...adapter} />
     );
   }
+
+  adapter.onMessage(onMessage);
 
   mount(container, appLayout());
 
