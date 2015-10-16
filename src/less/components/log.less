@@ -1,3 +1,13 @@
 .log {
   padding-bottom: @entry--height + @spacing--tight;
+  line-height:    @lineHeight--block;
+
+  &__message {
+    .spacing(@spacing--tight, @spacing--loose);
+    .deca;
+
+    &:nth-child(odd) {
+      .bg-lt-gray;
+    }
+  }
 }
